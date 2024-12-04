@@ -1,105 +1,70 @@
-Sistema de Cadastro e Login - Android
-Este repositório contém um sistema simples de cadastro e login para Android, utilizando um banco de dados local SQLite. O sistema permite que os usuários se registrem, armazenem suas credenciais de forma segura e realizem login para acessar a aplicação.
-
+Documentação do Projeto - App de Previsão Climática
 Visão Geral
-O sistema de cadastro e login permite que os usuários se registrem com nome, email e senha e, em seguida, façam login utilizando suas credenciais. As informações são armazenadas localmente no dispositivo utilizando SQLite.
-
-Estrutura do Projeto
-O projeto é dividido nas seguintes classes e componentes principais:
-
-DBHelper: Gerencia a criação e a atualização do banco de dados SQLite.
-UsuarioDAO: Realiza as operações de inserção e verificação de login no banco de dados.
-MainActivityLogin: Tela responsável pelo login, onde o usuário entra com suas credenciais.
-MainActivityRegistro: Tela de cadastro, onde o usuário se registra com nome, email e senha.
-Tecnologias Usadas
-Android SDK (para desenvolvimento de apps móveis)
-SQLite (para persistência de dados local)
-Banco de Dados
-O banco de dados é criado e gerenciado pela classe DBHelper, e as operações são realizadas através da classe UsuarioDAO.
-
-Estrutura do Banco de Dados
-Nome do Banco de Dados: usuarios.db
-Versão do Banco de Dados: 1
-
-Tabela: usuarios
-Campo	Tipo	Descrição
-_id	INTEGER	Chave primária (auto incremento)
-nome	TEXT	Nome do usuário
-email	TEXT	Email do usuário
-senha	TEXT	Senha do usuário
-SQL de Criação da Tabela:
-
-sql
-Copiar código
-CREATE TABLE usuarios (
-    _id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome TEXT,
-    email TEXT,
-    senha TEXT
-);
-Classes
-DBHelper
-Classe responsável pela criação e atualização do banco de dados. Ela estende SQLiteOpenHelper e implementa os métodos necessários para gerenciar a criação e a atualização do banco de dados.
-
-java
-Copiar código
-public class DBHelper extends SQLiteOpenHelper {
-    // Código para criar o banco de dados e tabelas
-}
-UsuarioDAO
-Classe que realiza as operações de inserção e verificação no banco de dados. É usada tanto na tela de cadastro quanto na tela de login.
-
-java
-Copiar código
-public class UsuarioDAO {
-    public void inserirUsuario(String nome, String email, String senha) {
-        // Insere um novo usuário no banco de dados
-    }
-
-    public boolean verificarLogin(String nome, String senha) {
-        // Verifica se o nome e senha correspondem no banco de dados
-        return userExists;
-    }
-}
-Telas do Aplicativo
-Tela de Registro - MainActivityRegistro
-A tela de registro permite ao usuário se cadastrar fornecendo nome, email e senha. Após o preenchimento dos campos e clique no botão "Cadastrar", os dados são inseridos no banco de dados.
-
-Fluxo:
-O usuário preenche os campos de nome, email e senha.
-O botão "Cadastrar" é pressionado.
-A validação dos campos é realizada.
-O usuário é inserido no banco de dados, e uma mensagem de sucesso é exibida.
-Tela de Login - MainActivityLogin
-A tela de login permite que o usuário faça login fornecendo nome e senha. O sistema valida as credenciais no banco de dados.
-
-Fluxo:
-O usuário fornece seu nome e senha.
-O botão "Login" é pressionado.
-O sistema valida as credenciais com o banco de dados.
-Se a autenticação for bem-sucedida, o usuário é redirecionado para a tela principal da aplicação.
+Esse aplicativo foi criado para oferecer previsões climáticas detalhadas, baseado no CEP ou cidade que o usuário digitar. Com ele, é possível ver a temperatura atual, as condições climáticas e as previsões para os próximos dias. A informação climática vem de uma API externa, que fornece dados em tempo real.
+________________________________________
 Requisitos Funcionais
-Cadastro de Usuário:
-
-O sistema deve permitir o cadastro de um novo usuário com nome, email e senha.
-O cadastro deve validar se todos os campos estão preenchidos corretamente.
-Login de Usuário:
-
-O sistema deve permitir que o usuário faça login fornecendo nome e senha.
-O login deve ser validado com os dados armazenados no banco de dados.
-Persistência Local de Dados:
-
-As informações dos usuários (nome, email, senha) devem ser armazenadas no banco de dados SQLite.
-Validação de Login:
-
-Se o nome de usuário ou a senha estiverem incorretos, uma mensagem de erro deve ser exibida.
+Tela de Login
+•	O usuário deve inserir um nome de usuário e senha para acessar o app.
+•	Se o login for bem-sucedido, ele é redirecionado para a tela de previsões climáticas.
+•	As credenciais de login são fixas no código: Nome de usuário: gabriel e Senha: 91821484.
+Tela de Previsão Climática
+•	O usuário deve poder digitar um CEP ou o nome de uma cidade para obter a previsão.
+•	O aplicativo vai buscar as informações dessa localidade usando uma API externa.
+•	As previsões para 3 dias devem ser exibidas, com as condições climáticas e as temperaturas mínimas e máximas.
+Exibição de Dados
+•	A tela de previsão vai mostrar:
+o	Temperatura atual
+o	Última atualização dos dados
+o	Previsões para os próximos 3 dias, incluindo a condição do clima (ex: Sol, Chuva, etc.) e as temperaturas mínima e máxima.
+Integração com a API
+•	O aplicativo consome dados de uma API externa para obter as previsões climáticas.
+•	A resposta da API vem em JSON, e o app processa esses dados para exibir as informações para o usuário.
+________________________________________
 Requisitos Não Funcionais
-Desempenho:
-
-O sistema deve ser eficiente, com tempos rápidos de resposta para operações de cadastro e login.
-Segurança:
-
-As senhas dos usuários devem ser armazenadas de forma segura. (Recomenda-se usar criptografia ou hash para proteger as senhas).
-Manutenibilidade:
-
-O código deve ser modular e bem documentado, facilitando a manutenção e a adição de novas funcionalidades.
+Interface de Usuário
+•	A interface deve ser simples e de fácil entendimento.
+•	As informações climáticas precisam ser apresentadas de maneira clara e objetiva.
+Desempenho
+•	O app deve carregar rapidamente as previsões climáticas, sem grandes delays.
+Segurança
+•	As credenciais de login são fixas e não são seguras para um ambiente de produção. Uma solução de autenticação mais segura seria ideal.
+Conectividade
+•	O app depende de uma conexão com a internet para acessar a API e pegar os dados em tempo real.
+Manutenibilidade
+•	O código deve ser bem organizado, facilitando a manutenção e futuras melhorias.
+________________________________________
+Estrutura do Projeto
+Classes
+•	MainActivityLogin: É a tela de login, onde o usuário digita o nome de usuário e a senha. Após a validação, ele é redirecionado para a tela de previsões.
+•	MainActivity: É a tela principal, onde as previsões climáticas são exibidas. Nela, o usuário digita o CEP ou nome da cidade e o app faz a requisição à API para trazer os dados.
+Variáveis
+MainActivityLogin
+•	editusuario: EditText para o nome de usuário.
+•	editsenha: EditText para a senha.
+•	btn_login: Botão de login.
+MainActivity
+•	editcep: EditText para o CEP ou cidade.
+•	txt1, txt2, txt3, txt4: TextViews que mostram informações gerais sobre a cidade e o clima.
+•	txt_temperatura: TextView que exibe a temperatura atual.
+•	txt_previsao_semanal: TextView com um resumo das previsões.
+•	txt_previsao_dia1, txt_max_temp_dia1, txt_min_temp_dia1: TextViews para o primeiro dia da previsão.
+•	txt_previsao_dia2, txt_max_temp_dia2, txt_min_temp_dia2: TextViews para o segundo dia.
+•	txt_previsao_dia3, txt_max_temp_dia3, txt_min_temp_dia3: TextViews para o terceiro dia.
+________________________________________
+API Utilizada
+O app utiliza a WeatherAPI (https://www.weatherapi.com/) para buscar dados climáticos. A API oferece informações sobre o clima atual, previsão para os próximos dias, condições do tempo, entre outros.
+A API responde com dados em formato JSON e requer uma chave de API para fazer as requisições. O app utiliza essa chave para buscar as previsões climáticas de 3 dias.
+Exemplo de Requisição à API:
+plaintext
+Copiar código
+https://api.weatherapi.com/v1/forecast.json?key=b2e45f29d2e5460cb19164741242911&q={localizacao}&days=3
+Onde {localizacao} pode ser um nome de cidade ou um CEP. A resposta será um objeto JSON contendo as previsões.
+________________________________________
+Fluxo de Dados
+1.	O usuário abre o app e é levado para a tela de login.
+2.	O usuário insere as credenciais (nome de usuário e senha).
+3.	Se as credenciais estiverem corretas, o app redireciona o usuário para a tela de previsões.
+4.	Na tela de previsões, o usuário digita o CEP ou cidade e o app faz uma requisição à API para buscar as informações.
+5.	O app processa os dados JSON recebidos da API e exibe as informações na tela de previsão climática.
+________________________________________
+Fluxo de Tela (UI)
