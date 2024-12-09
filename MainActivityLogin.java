@@ -1,4 +1,3 @@
-
 package com.example.apiusandoglobal;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 public class MainActivityLogin extends AppCompatActivity {
 
     EditText editusuario, editsenha;
-    Button btn_login, btn_registro;
+    Button btn_login, btn_registro, btnPular;
     DBHelper.UsuarioDAO usuarioDAO;
 
     @Override
@@ -26,9 +25,19 @@ public class MainActivityLogin extends AppCompatActivity {
         editsenha = findViewById(R.id.editsenha);
         btn_login = findViewById(R.id.btn_login);
         btn_registro = findViewById(R.id.btn_registro);
+        btnPular = findViewById(R.id.btnPular);
 
 
         usuarioDAO = new DBHelper.UsuarioDAO(this);
+
+        btnPular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tela02 = new Intent(MainActivityLogin.this, MainActivity.class);
+                startActivity(tela02);
+                finish();
+            }
+        });
 
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
